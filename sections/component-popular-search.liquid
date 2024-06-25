@@ -1,37 +1,39 @@
 {{ 'component-popular-searches.css' | asset_url | stylesheet_tag }}
 {%- style -%}
-  .section-{{ section.id }}-padding {
+  .section-{{ section.id }} {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
   @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
+    .section-{{ section.id }} {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
 {%- endstyle -%}
 
-<div class="section-{{ section.id }}-padding color--{{ section.settings.color_scheme }} {% unless section.settings.full_width %} page-width {% endunless %}">
-  <div class="popular-searches__content-container {{ section.settings.content_alignment }}">
-    {% if section.settings.heading != blank %}
-      <h2 class="popular-searches__heading {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
-    {% endif %}
-  </div>
-  <div class="popular-searches__wrapper {{ section.settings.content_alignment }}">
-    {% for block in section.blocks %}
-      {% if block.settings.search_url != blank %}
-        <a href="{{ block.settings.search_url }}" class="popular-searches__search">
-          <p class="popular-searches__title">
-            {{ block.settings.search_title -}}
-            {%- unless forloop.last %} | {% endunless %}
-          </p>
-        </a>
+<marmeto-popular-search class="section-{{ section.id }}">
+  <div class="marmeto-popular-search color--{{ section.settings.color_scheme }} {% unless section.settings.full_width %} page-width {% endunless %}">
+    <div class="marmeto-popular-search__content-container {{ section.settings.content_alignment }}">
+      {% if section.settings.heading != blank %}
+        <h2 class="marmeto-popular-search__heading {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
       {% endif %}
-    {% endfor %}
+    </div>
+    <div class="marmeto-popular-search__wrapper {{ section.settings.content_alignment }}">
+      {% for block in section.blocks %}
+        {% if block.settings.search_url != blank %}
+          <a href="{{ block.settings.search_url }}" class="marmeto-popular-search__search">
+            <p class="marmeto-popular-search__title">
+              {{ block.settings.search_title -}}
+              {%- unless forloop.last %} | {% endunless %}
+            </p>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
-</div>
+</marmeto-popular-search>
 
 
 {% schema %}

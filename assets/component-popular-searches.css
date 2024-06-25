@@ -20,12 +20,12 @@ p{
 .center {
   text-align: center;
 }
-.popular-searches__wrapper {
+.marmeto-popular-search__wrapper {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
 }
-.popular-searches__search {
+.marmeto-popular-search__search {
   color: inherit;
   font-size: calc(16px + (21 - 16) * (100vw - 375px) / (1440 - 375));
   text-decoration: none;
